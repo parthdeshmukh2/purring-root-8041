@@ -18,8 +18,9 @@ app.use("/users", userController);
 app.listen(PORT, async () => {
   try {
     await connect();
+    console.log("listening on port 5500");
   } catch (err) {
     console.error(err.message);
   }
-  console.log("listening on port 5500");
+  
 });
