@@ -25,7 +25,7 @@ const getSuccId = (payload) => {
 const getCar = (params) => (dispatch) => {
   dispatch(getReq());
   axios
-    .get("https://zoomcar-server.herokuapp.com/api/zoomcar", params)
+    .get("https://zoomcar-server.vercel.app/api/zoomcar", params)
     .then((r) => {
       dispatch(getSucc(r.data));
     })
@@ -36,7 +36,7 @@ const getCarId =
   (dispatch) => {
     dispatch(getReqId());
     axios
-      .get(`https://zoomcar-server.herokuapp.com/api/zoomcar/${idd}`)
+      .get(`https://zoomcar-server.vercel.app/api/zoomcar/${idd}`)
       .then((r) => {
         dispatch(getSuccId(r.data));
       })

@@ -4,9 +4,15 @@ import * as types from "./action.types";
 const registerUser = (payload) => (dispatch) => {
   dispatch({ type: types.REGISTER_USER_REQUEST });
   return axios
-    .post("https://murmuring-cove-41529.herokuapp.com/register", payload)
+    .post("https://zoomcar-user-server.vercel.app/register", payload,{
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS"
+      }
+    })
     .then((res) => {
       dispatch({ type: types.REGISTER_USER_SUCCESS, payload: res.data });
+      console.log(payload);
       return types.REGISTER_USER_SUCCESS;
     })
     .catch((e) => {
@@ -21,9 +27,15 @@ const registerUser = (payload) => (dispatch) => {
 const loginUser = (params) => (dispatch) => {
   dispatch({ type: types.LOGIN_USER_REQUEST });
   return axios
-    .post("https://murmuring-cove-41529.herokuapp.com/login", params)
+    .post("https://zoomcar-user-server.vercel.app/login", params,{
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS"
+      }
+    })
     .then((res) => {
       dispatch({ type: types.LOGIN_USER_SUCCESS, payload: res.data });
+      console.log(res.data);
       return types.LOGIN_USER_SUCCESS;
     })
     .catch((e) => {

@@ -4,7 +4,7 @@ import axios from "axios";
 const getLocation = (params) => (dispatch) => {
   dispatch({ type: types.GET_LOCATION_REQU });
   axios
-    .get("https://zoomcar-server.herokuapp.com/api/location", params)
+    .get("https://zoomcar-server.vercel.app//api/location", params)
     .then((res) => {
       dispatch({ type: types.GET_LOCATION_SUCC, payload: res.data });
       return types.GET_LOCATION_SUCC;
