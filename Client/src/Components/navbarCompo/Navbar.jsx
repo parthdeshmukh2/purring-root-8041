@@ -33,10 +33,13 @@ import { logoutUser } from "../../Redux/AuthReducer/action";
 const Navbar = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const isAuth = useSelector((state) => state.AuthReducer.isAuth);
+  const user = useSelector((state) => state.AuthReducer.user);
   const [userCity, setUserCity] = useState("");
   const [userName, setUserName] = useState("");
   const navigate = useNavigate();
   const dispatch = useDispatch();
+console.log(isAuth);
+console.log(user, "user");
 
   const handleLogout = () => {
     setLocalData("token", "");
@@ -57,8 +60,8 @@ const Navbar = () => {
 
   return (
     <>
-      {isAuth ? (
-        <Flex
+      {/* {isAuth ? ( */}
+        {/* <Flex
           h={16}
           alignItems={"center"}
           justifyContent={"space-between"}
@@ -268,7 +271,8 @@ const Navbar = () => {
             </Menu>
           </Flex>
         </Flex>
-      ) : (
+      ) */}
+       {/* : ( */}
         <Box bg={"black"} color={"white"} px={4} width="100%">
           <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
             <Flex gap={"15px"} alignItems="center" direction="row">
@@ -392,7 +396,8 @@ const Navbar = () => {
                     color="white"
                     className="userMenuNavbar"
                   >
-                    Login/SignUp
+                    {!isAuth && "Login/SignUp"}
+                    {isAuth && user}
                   </Text>
                 </MenuButton>
                 <MenuList alignItems={"center"} backgroundColor="black">
@@ -402,7 +407,7 @@ const Navbar = () => {
             </Flex>
           </Flex>
         </Box>
-      )}
+      {/* )} */}
     </>
   );
 };

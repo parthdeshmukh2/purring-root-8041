@@ -16,17 +16,18 @@ import { loginUser } from "../Redux/AuthReducer/action";
 
 const Login = () => {
   const navigate = useNavigate();
-  const [email, setEmail] = useState("");
+  const [Email, setEmail] = useState("");
   const [show, setShow] = React.useState(false);
-  const [password, setPassword] = React.useState("");
+  const [Password, setPassword] = React.useState("");
   const handleClick = () => setShow(!show);
   const dispatch = useDispatch();
   const isError = useSelector((state) => state.AuthReducer);
   const errorMessgae = useSelector((state) => state.AuthReducer.message);
 
   const handlesubmit = () => {
-    const loginobj = { email, password };
+    const loginobj = { Email, Password };
     dispatch(loginUser(loginobj));
+    alert("Login Successfull");
     navigate("/", { replace: true });
   };
 
@@ -53,7 +54,7 @@ const Login = () => {
           type="email"
           color={"black"}
           placeholder="@gmail.com"
-          value={email}
+          value={Email}
           onChange={(e) => setEmail(e.target.value)}
         />
       </InputGroup>
@@ -68,7 +69,7 @@ const Login = () => {
           type={show ? "text" : "password"}
           placeholder="Enter password"
           color={"black"}
-          value={password}
+          value={Password}
           onChange={(e) => setPassword(e.target.value)}
         />
         <InputRightElement width="4.5rem">

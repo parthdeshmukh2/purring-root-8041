@@ -15,11 +15,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { registerUser } from "../Redux/AuthReducer/action";
 
 const Register = () => {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
+  const [Name, setName] = useState("");
+  const [Email, setEmail] = useState("");
+  const [LastName, setLastName] = useState("");
   const [show, setShow] = React.useState(false);
-  const [password, setPassword] = React.useState("");
+  const [Password, setPassword] = React.useState("");
   const handleClick = () => setShow(!show);
   const dispatch = useDispatch();
   const isError = useSelector((state) => state.AuthReducer.isError);
@@ -27,8 +27,9 @@ const Register = () => {
   const navigate = useNavigate();
 
   const handlesubmit = () => {
-    const loginobj = { name, email, phone, password };
+    const loginobj = { Name, Email, LastName, Password };
     dispatch(registerUser(loginobj));
+    alert("Registered SuccessFully")
     navigate("/Login", { replace: true });
   };
 
@@ -55,23 +56,19 @@ const Register = () => {
           type="text"
           placeholder="name"
           color={"black"}
-          value={name}
+          value={Name}
           onChange={(e) => setName(e.target.value)}
         />
       </InputGroup>
       <InputGroup m="20px auto">
-        <InputLeftAddon
-          children="+91"
-          bg="black"
-          boxShadow="0px 0px 0px 1px black"
-        />
+       
         <Input
           boxShadow="0px 0px 0px 1px black"
-          type="tel"
-          placeholder="phone number"
+          type="text"
+          placeholder="Last Name"
           color={"black"}
-          value={phone}
-          onChange={(e) => setPhone(e.target.value)}
+          value={LastName}
+          onChange={(e) => setLastName(e.target.value)}
         />
       </InputGroup>
       <InputGroup m="20px auto">
@@ -85,7 +82,7 @@ const Register = () => {
           type="email"
           color={"black"}
           placeholder="@gmail.com"
-          value={email}
+          value={Email}
           onChange={(e) => setEmail(e.target.value)}
         />
       </InputGroup>
@@ -100,7 +97,7 @@ const Register = () => {
           type={show ? "text" : "password"}
           placeholder="Enter password"
           color={"black"}
-          value={password}
+          value={Password}
           onChange={(e) => setPassword(e.target.value)}
         />
         <InputRightElement width="4.5rem">

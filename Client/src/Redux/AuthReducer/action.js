@@ -4,15 +4,11 @@ import * as types from "./action.types";
 const registerUser = (payload) => (dispatch) => {
   dispatch({ type: types.REGISTER_USER_REQUEST });
   return axios
-    .post("https://zoomcar-user-server.vercel.app/register", payload,{
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS"
-      }
-    })
+    .post("https://ecomm-server.onrender.com/user/register", payload,)
     .then((res) => {
       dispatch({ type: types.REGISTER_USER_SUCCESS, payload: res.data });
       console.log(payload);
+     
       return types.REGISTER_USER_SUCCESS;
     })
     .catch((e) => {
@@ -26,24 +22,23 @@ const registerUser = (payload) => (dispatch) => {
 
 const loginUser = (params) => (dispatch) => {
   dispatch({ type: types.LOGIN_USER_REQUEST });
-  return axios
-    .post("https://zoomcar-user-server.vercel.app/login", params,{
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS"
-      }
-    })
+  console.log(params, "params")
+  axios
+    .post("https://ecomm-server.onrender.com/user/login", params)
     .then((res) => {
       dispatch({ type: types.LOGIN_USER_SUCCESS, payload: res.data });
       console.log(res.data);
-      return types.LOGIN_USER_SUCCESS;
+    
+      console.log(params)
+   
+      
     })
     .catch((e) => {
       dispatch({
         type: types.LOGIN_USER_FAILURE,
         payload: e.response.data.message,
       });
-      return types.LOGIN_USER_FAILURE;
+    
     });
 };
 
